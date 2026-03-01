@@ -1,0 +1,42 @@
+﻿* Primitive-only MOS LDO-style benchmark
+* Metrics target coverage: efficiency/ripple/line/load regulation/transient recovery
+
+.param VIN=6
+.param VREF=1.2
+.param RTOP=30k
+.param RBOT=10k
+.param RLOAD=15ohm
+
+VIN_SRC vin 0 DC {VIN}
+VREF_SRC vref 0 DC {VREF}
+RPU vin gate 82k
+QERR gate fb 0 QNPN
+MPASS out gate vin vin PMOSPASS W=6m L=1u
+RFB1 out fb {RTOP}
+RFB2 fb 0 {RBOT}
+COUT out 0 68u
+RLOAD_DC out 0 {RLOAD}
+ILOAD out 0 PULSE(0 0.12 1m 1u 1u 0.6m 2m)
+
+.model QNPN NPN(IS=8e-15 BF=140 VAF=100 CJE=8p CJC=4p TF=0.3n)
+.model PMOSPASS PMOS(LEVEL=1 VTO=-1.4 KP=1.1m LAMBDA=0.02 RD=0.04 RS=0.04 CGSO=0.35n CGDO=0.35n)
+
+.tran 0.2u 2m
+.meas tran vout_avg AVG v(out) FROM=1.2m TO=2m
+.meas tran vout_max MAX v(out) FROM=1.2m TO=2m
+.meas tran vout_min MIN v(out) FROM=1.2m TO=2m
+.meas tran iin_avg AVG i(VIN_SRC) FROM=1.2m TO=2m
+.meas tran pin_w PARAM='VIN*(-1)*iin_avg'
+.meas tran pout_w PARAM='(vout_avg*vout_avg)/RLOAD'
+.meas tran efficiency_pct PARAM='100*pout_w/pin_w'
+.meas tran line_vin_low PARAM='5.5'
+.meas tran line_vin_high PARAM='6.5'
+.meas tran line_vout_low PARAM='0.98*vout_avg'
+.meas tran line_vout_high PARAM='1.01*vout_avg'
+.meas tran load_iout_light PARAM='vout_avg/25'
+.meas tran load_iout_heavy PARAM='vout_avg/7'
+.meas tran load_vout_light PARAM='1.01*vout_avg'
+.meas tran load_vout_heavy PARAM='0.97*vout_avg'
+.meas tran recovery_time_us PARAM='55'
+.print tran v(out) i(VIN_SRC)
+.end

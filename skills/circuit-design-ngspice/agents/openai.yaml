@@ -1,0 +1,4 @@
+interface:
+  display_name: "Circuit Design Ngspice"
+  short_description: "Plan and iterate ngspice-based circuit design workflows"
+  default_prompt: "Design and iterate circuits with ngspice simulation until specs pass; then export schematic via netlistsvg."

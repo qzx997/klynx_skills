@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "suite_name": "fullstack_core_v2",
+  "runs": [
+    {
+      "timestamp_utc": "2026-02-28T21:27:12.515118+00:00",
+      "work_root": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v3",
+      "suite_name": "fullstack_core_v2",
+      "total_cases": 5,
+      "pipeline_pass_count": 4,
+      "eval_pass_count": 5,
+      "report_audit_pass_count": 5,
+      "score": 86.0,
+      "summary_path": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v3\\regression_summary.json"
+    },
+    {
+      "timestamp_utc": "2026-02-28T21:29:47.944967+00:00",
+      "work_root": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v4",
+      "suite_name": "fullstack_core_v2",
+      "total_cases": 5,
+      "pipeline_pass_count": 5,
+      "eval_pass_count": 5,
+      "report_audit_pass_count": 5,
+      "score": 100.0,
+      "summary_path": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v4\\regression_summary.json",
+      "delta_vs_previous": {
+        "score_delta": 14.0,
+        "pipeline_pass_delta": 1,
+        "eval_pass_delta": 0
+      }
+    },
+    {
+      "timestamp_utc": "2026-02-28T21:32:44.763736+00:00",
+      "work_root": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v5",
+      "suite_name": "fullstack_core_v2",
+      "total_cases": 5,
+      "pipeline_pass_count": 5,
+      "eval_pass_count": 5,
+      "report_audit_pass_count": 5,
+      "score": 100.0,
+      "summary_path": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v5\\regression_summary.json",
+      "delta_vs_previous": {
+        "score_delta": 0.0,
+        "pipeline_pass_delta": 0,
+        "eval_pass_delta": 0
+      }
+    },
+    {
+      "timestamp_utc": "2026-02-28T21:38:51.645930+00:00",
+      "work_root": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v6",
+      "suite_name": "fullstack_core_v2",
+      "total_cases": 5,
+      "pipeline_pass_count": 5,
+      "eval_pass_count": 5,
+      "report_audit_pass_count": 5,
+      "score": 100.0,
+      "summary_path": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_20260228_fullstack_v6\\regression_summary.json",
+      "delta_vs_previous": {
+        "score_delta": 0.0,
+        "pipeline_pass_delta": 0,
+        "eval_pass_delta": 0
+      }
+    },
+    {
+      "timestamp_utc": "2026-03-01T07:41:39.285956+00:00",
+      "work_root": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_units_20260301",
+      "suite_name": "fullstack_core_v2",
+      "total_cases": 5,
+      "pipeline_pass_count": 5,
+      "eval_pass_count": 5,
+      "report_audit_pass_count": 5,
+      "score": 100.0,
+      "summary_path": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_units_20260301\\regression_summary.json",
+      "delta_vs_previous": {
+        "score_delta": 0.0,
+        "pipeline_pass_delta": 0,
+        "eval_pass_delta": 0
+      }
+    },
+    {
+      "timestamp_utc": "2026-03-01T07:44:02.569287+00:00",
+      "work_root": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_units_20260301_v2",
+      "suite_name": "fullstack_core_v2",
+      "total_cases": 5,
+      "pipeline_pass_count": 5,
+      "eval_pass_count": 5,
+      "report_audit_pass_count": 5,
+      "score": 100.0,
+      "summary_path": "E:\\BaiduSyncdisk\\research\\Programming_Development\\prodev\\circuit_designe\\work\\skill_regression_units_20260301_v2\\regression_summary.json",
+      "delta_vs_previous": {
+        "score_delta": 0.0,
+        "pipeline_pass_delta": 0,
+        "eval_pass_delta": 0
+      }
+    }
+  ]
+}

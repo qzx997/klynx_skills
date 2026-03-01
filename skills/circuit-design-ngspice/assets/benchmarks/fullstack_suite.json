@@ -1,0 +1,140 @@
+{
+  "suite_name": "fullstack_core_v2",
+  "description": "Benchmark suite for regression across LNA/opamp/oscillator/power flows with shared robustness checks.",
+  "cases": [
+    {
+      "id": "case01_lna_rf",
+      "domain": "lna_rf",
+      "template_relpath": "assets/templates/lna_common_emitter_rf_bench.cir",
+      "run_mode": "single",
+      "extractor": "rf_lna",
+      "input_node": "in",
+      "output_node": "out",
+      "plots": [
+        {"log_relpath": "ngspice.log", "plot_mode": "ac", "svg_relpath": "plots/sim_plot.svg"}
+      ],
+      "spec": {
+        "metric_pack_notes": {"domain": "lna_rf"},
+        "targets_eval": {
+          "s11_db_max": {"max": -10.0},
+          "s22_db_max": {"max": -10.0},
+          "k_min": {"min": 1.0},
+          "nf_db_max": {"max": 3.0},
+          "p1db_dbm_min": {"min": 18.0},
+          "ip3_dbm_min": {"min": 29.0}
+        }
+      }
+    },
+    {
+      "id": "case02_opamp_cascode",
+      "domain": "opamp",
+      "template_relpath": "assets/templates/opamp_mos_cascode_eval.cir",
+      "run_mode": "dual",
+      "extractor": "opamp",
+      "input_node": "in",
+      "output_node": "out",
+      "plots": [
+        {"log_relpath": "ac_ngspice.log", "plot_mode": "ac", "svg_relpath": "plots/sim_plot.svg"},
+        {"log_relpath": "power_ngspice.log", "plot_mode": "tran", "svg_relpath": "plots/tran_plot.svg"}
+      ],
+      "spec": {
+        "metric_pack_notes": {"domain": "opamp"},
+        "targets_eval": {
+          "pm_deg": {"min": -180.0},
+          "ugf_hz": {"min": 1000000.0},
+          "slew_pos_vus": {"min": 0.01},
+          "slew_neg_vus": {"min": 0.01},
+          "settling_time_us": {"max": 80.0},
+          "stability_flag": {"min": 0.0}
+        }
+      }
+    },
+    {
+      "id": "case03_osc_ring",
+      "domain": "oscillator",
+      "template_relpath": "assets/templates/oscillator_ring_mos_3stage.cir",
+      "run_mode": "single",
+      "extractor": "oscillator",
+      "input_node": "n1",
+      "output_node": "n1",
+      "plots": [
+        {"log_relpath": "ngspice.log", "plot_mode": "tran", "svg_relpath": "plots/sim_plot.svg"}
+      ],
+      "spec": {
+        "metric_pack_notes": {"domain": "oscillator"},
+        "targets_eval": {
+          "startup_flag": {"min": 1.0},
+          "f_osc_hz": {"min": 1000000.0},
+          "vpp_steady_v": {"min": 0.2},
+          "startup_time_us": {"max": 200.0}
+        }
+      }
+    },
+    {
+      "id": "case04_buck_power",
+      "domain": "power",
+      "template_relpath": "assets/templates/buck_mos_power_bench.cir",
+      "run_mode": "single",
+      "extractor": "power",
+      "input_node": "vin",
+      "output_node": "out",
+      "plots": [
+        {"log_relpath": "ngspice.log", "plot_mode": "tran", "svg_relpath": "plots/sim_plot.svg"}
+      ],
+      "spec": {
+        "metric_pack_notes": {"domain": "power"},
+        "targets_eval": {
+          "efficiency_pct": {"min": 40.0},
+          "v_ripple_mv": {"max": 700.0},
+          "line_reg_mv_per_v": {"max": 200.0},
+          "load_reg_mv_per_a": {"max": 1000.0},
+          "recovery_time_us": {"max": 120.0}
+        }
+      }
+    },
+    {
+      "id": "case05_ldo_power",
+      "domain": "power",
+      "template_relpath": "assets/templates/ldo_mos_series_bench.cir",
+      "run_mode": "single",
+      "extractor": "power",
+      "input_node": "vin",
+      "output_node": "out",
+      "plots": [
+        {"log_relpath": "ngspice.log", "plot_mode": "tran", "svg_relpath": "plots/sim_plot.svg"}
+      ],
+      "spec": {
+        "metric_pack_notes": {"domain": "power"},
+        "targets_eval": {
+          "efficiency_pct": {"min": 50.0},
+          "v_ripple_mv": {"max": 600.0},
+          "line_reg_mv_per_v": {"max": 60.0},
+          "load_reg_mv_per_a": {"max": 500.0},
+          "recovery_time_us": {"max": 120.0}
+        }
+      }
+    }
+  ],
+  "common_tests": {
+    "pvt": {
+      "enabled": true,
+      "reference_case_id": "case01_lna_rf",
+      "corners": [
+        {"name": "tt_27c", "temp_c": 27.0, "param_overrides": {}},
+        {"name": "low_vcc_hot", "temp_c": 85.0, "param_overrides": {"VCC": "13.5"}},
+        {"name": "high_vcc_cold", "temp_c": -20.0, "param_overrides": {"VCC": "16.5"}}
+      ]
+    },
+    "monte_carlo": {
+      "enabled": true,
+      "reference_case_id": "case04_buck_power",
+      "samples": 12,
+      "seed": 20260301,
+      "params": {
+        "L": {"nominal": "22u", "sigma_pct": 5.0, "min_scale": 0.7, "max_scale": 1.3},
+        "COUT": {"nominal": "100u", "sigma_pct": 8.0, "min_scale": 0.6, "max_scale": 1.5},
+        "RLOAD": {"nominal": "20ohm", "sigma_pct": 10.0, "min_scale": 0.6, "max_scale": 1.6}
+      }
+    }
+  }
+}

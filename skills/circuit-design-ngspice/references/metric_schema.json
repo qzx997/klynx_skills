@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "notes": "Unified metric catalog for RF/opamp/oscillator/power/filter workflows. Direction indicates preferred target rule orientation.",
+  "metrics": {
+    "gain_db": {"unit": "dB", "direction": "min", "category": "rf"},
+    "bw_hz": {"unit": "Hz", "direction": "min", "category": "rf"},
+    "s11_db_max": {"unit": "dB", "direction": "max", "category": "rf"},
+    "s22_db_max": {"unit": "dB", "direction": "max", "category": "rf"},
+    "k_min": {"unit": "ratio", "direction": "min", "category": "rf"},
+    "nf_db_max": {"unit": "dB", "direction": "max", "category": "rf"},
+    "p1db_dbm_min": {"unit": "dBm", "direction": "min", "category": "rf"},
+    "ip3_dbm_min": {"unit": "dBm", "direction": "min", "category": "rf"},
+    "zin_re": {"unit": "ohm", "direction": "min", "category": "rf"},
+    "zin_im": {"unit": "ohm", "direction": "min", "category": "rf"},
+    "zout_re": {"unit": "ohm", "direction": "min", "category": "rf"},
+    "zout_im": {"unit": "ohm", "direction": "min", "category": "rf"},
+    "s21_db": {"unit": "dB", "direction": "min", "category": "rf"},
+    "s12_db": {"unit": "dB", "direction": "max", "category": "rf"},
+    "s11_lin_max": {"unit": "ratio", "direction": "max", "category": "rf"},
+    "s22_lin_max": {"unit": "ratio", "direction": "max", "category": "rf"},
+    "nf_lin_max": {"unit": "ratio", "direction": "max", "category": "rf"},
+    "pm_deg": {"unit": "deg", "direction": "min", "category": "opamp"},
+    "ugf_hz": {"unit": "Hz", "direction": "min", "category": "opamp"},
+    "slew_pos_vus": {"unit": "V/us", "direction": "min", "category": "opamp"},
+    "slew_neg_vus": {"unit": "V/us", "direction": "min", "category": "opamp"},
+    "settling_time_us": {"unit": "us", "direction": "max", "category": "opamp"},
+    "stability_flag": {"unit": "bool(0/1)", "direction": "min", "category": "opamp"},
+    "overshoot_pct": {"unit": "%", "direction": "max", "category": "opamp"},
+    "step_initial_v": {"unit": "V", "direction": "min", "category": "opamp"},
+    "step_final_v": {"unit": "V", "direction": "min", "category": "opamp"},
+    "settling_band_v": {"unit": "V", "direction": "max", "category": "opamp"},
+    "startup_flag": {"unit": "bool(0/1)", "direction": "min", "category": "oscillator"},
+    "f_osc_hz": {"unit": "Hz", "direction": "min", "category": "oscillator"},
+    "vpp_steady_v": {"unit": "V", "direction": "min", "category": "oscillator"},
+    "startup_time_us": {"unit": "us", "direction": "max", "category": "oscillator"},
+    "vpk_steady_v": {"unit": "V", "direction": "min", "category": "oscillator"},
+    "dc_offset_v": {"unit": "V", "direction": "min", "category": "oscillator"},
+    "efficiency_pct": {"unit": "%", "direction": "min", "category": "power"},
+    "v_ripple_mv": {"unit": "mV", "direction": "max", "category": "power"},
+    "line_reg_mv_per_v": {"unit": "mV/V", "direction": "max", "category": "power"},
+    "load_reg_mv_per_a": {"unit": "mV/A", "direction": "max", "category": "power"},
+    "recovery_time_us": {"unit": "us", "direction": "max", "category": "power"},
+    "pin_w": {"unit": "W", "direction": "min", "category": "power"},
+    "pout_w": {"unit": "W", "direction": "min", "category": "power"},
+    "idd_a": {"unit": "A", "direction": "max", "category": "power"},
+    "idd_ma": {"unit": "mA", "direction": "max", "category": "power"},
+    "il_db": {"unit": "dB", "direction": "max", "category": "filter"},
+    "rl_db": {"unit": "dB", "direction": "min", "category": "filter"},
+    "ripple_db": {"unit": "dB", "direction": "max", "category": "filter"},
+    "attn_stop_db": {"unit": "dB", "direction": "min", "category": "filter"},
+    "f_3db_hz": {"unit": "Hz", "direction": "min", "category": "filter"},
+    "gain_cl_dc_db": {"unit": "dB", "direction": "min", "category": "opamp"},
+    "gain_ol_dc_db": {"unit": "dB", "direction": "min", "category": "opamp"}
+  },
+  "domains": {
+    "rf": {
+      "required_targets": [
+        "s11_db_max",
+        "s22_db_max",
+        "k_min",
+        "nf_db_max",
+        "p1db_dbm_min",
+        "ip3_dbm_min"
+      ]
+    },
+    "lna": {
+      "required_targets": [
+        "s11_db_max",
+        "s22_db_max",
+        "k_min",
+        "nf_db_max",
+        "p1db_dbm_min",
+        "ip3_dbm_min"
+      ]
+    },
+    "lna_rf": {
+      "required_targets": [
+        "s11_db_max",
+        "s22_db_max",
+        "k_min",
+        "nf_db_max",
+        "p1db_dbm_min",
+        "ip3_dbm_min"
+      ]
+    },
+    "opamp": {
+      "required_targets": [
+        "pm_deg",
+        "ugf_hz",
+        "slew_pos_vus",
+        "slew_neg_vus",
+        "settling_time_us",
+        "stability_flag"
+      ]
+    },
+    "oscillator": {
+      "required_targets": [
+        "startup_flag",
+        "f_osc_hz",
+        "vpp_steady_v",
+        "startup_time_us"
+      ]
+    },
+    "power": {
+      "required_targets": [
+        "efficiency_pct",
+        "v_ripple_mv",
+        "line_reg_mv_per_v",
+        "load_reg_mv_per_a",
+        "recovery_time_us"
+      ]
+    },
+    "filter": {
+      "required_targets": [
+        "il_db",
+        "rl_db",
+        "ripple_db",
+        "attn_stop_db"
+      ]
+    }
+  }
+}
